@@ -1,0 +1,17 @@
+body
+	&.reduce-motions
+		*, *::before, *::after
+			transition: none !important
+			animation-play-state: paused !important
+	&.full-height
+		min-height: 100vh
+		+flex(column, space-between, stretch)
+
+@media print
+	header,
+	footer,
+	aside
+		display: none !important
+	a[href]:not([href='']):not([href^='#'])
+		&::after
+			content: " (" attr(href) ")" !important
