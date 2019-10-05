@@ -6,47 +6,63 @@
     <h2 class="section-title">
       Contact Us
     </h2>
-    <from @submit.prevent="">
+    <form @submit.prevent="">
       <field
-        v-model="nameVal"
-        :input-type="'text'"
-        :validation="'required|alpha_dash'"
-        :input-name="'name'"
-        :label-text="'Name'"
+        v-for="(item, index) in fieldsOptions"
+        :key="index"
+        v-model="item.value"
+        :input-type="item.type"
+        :validation="item.vRule"
+        :input-name="item.name"
+        :label-text="item.label"
+        @input="changeValue(index, 'currency', $event)"
       />
+      <div class="checkbox">
+        <input
+          id="checkbox"
+          v-validate="'required'"
+          type="checkbox"
+          class="checkbox__input"
+          name="chb"
+        >
+        <label
+          for="checkbox"
+          class="checkbox__vabel"
+        >check me</label>
+      </div>
 
-      <field
-        v-model="phoneVal"
-        :input-type="'phone'"
-        :validation="{ required: true, regex: /^((8|\+)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/ }"
-        :input-name="'phone'"
-        :label-text="'Phone'"
-      />
 
-      <field
-        v-model="emailVal"
-        :input-type="'email'"
-        :validation="'required|email'"
-        :input-name="'email'"
-        :label-text="'E-mail'"
-      />
-    </from>
+      <p
+        v-if="errors.first('chb')"
+      >
+        {{ errors.first('chb') }}
+      </p>
+
+      <button
+        type="submit"
+        :disabled="errors.any()"
+      >
+        SEND
+      </button>
+    </form>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Field from './Field';
 
 export default {
   components: {
     Field
   },
-  data: () => ({
-    nameVal: '',
-    phoneVal: '',
-    emailVal: ''
-  }),
-  computed: {},
+  data: () => ({}),
+  computed: {
+    ...mapGetters('fields', {
+      fieldsOptions: 'options'
+    })
+  },
+  mounted() {},
   methods: {}
 };
 </script>

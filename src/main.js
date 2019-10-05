@@ -9,14 +9,14 @@ Vue.use(VeeValidate, {
   classes: true,
   classNames: {
     invalid: 'invalid'
-  }
+  },
+  events: 'change'
 });
 
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyAxJKJFLs8s-yAWfMs_PLqD8_mUAd-cbBU'
   }
-
 });
 
 new Vue({
