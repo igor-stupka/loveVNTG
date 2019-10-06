@@ -17,12 +17,14 @@
       :value="value"
       @input="$emit('input', $event.target.value)"
     >
-    <p
-      v-if="errors.first(inputName)"
-      class="field__sub-text"
-    >
-      {{ errors.first(inputName) }}
-    </p>
+    <transition name="fade">
+      <p
+        v-if="errors.first(inputName)"
+        class="field__sub-text"
+      >
+        {{ errors.first(inputName) }}
+      </p>
+    </transition>
   </div>
 </template>
 
@@ -45,4 +47,5 @@ export default {
 </script>
 
 <style lang="sass">
+@import '../../css/components/field.sass'
 </style>

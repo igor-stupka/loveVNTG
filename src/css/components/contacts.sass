@@ -1,0 +1,46 @@
+@import "../_variables"
+@import "../_mixins"
+@import "../_functions"
+
+.contacts
+	padding: 62px 0 100px
+	@media screen and (max-width: $fablet)
+		padding: 40px 0
+	&__
+		&grid
+			display: -ms-grid
+			display: grid
+			grid-template-columns: 1fr 1fr
+			grid-gap: 115px
+			@media screen and (max-width: $desktop)
+				grid-gap: 40px
+			@media screen and (max-width: $tablet)
+				grid-template-columns: 1fr
+		&subgrid
+			display: -ms-grid
+			display: grid
+			grid-template-columns: 1fr 1fr
+			grid-gap: 20px 35px
+			@media screen and (max-width: 550px)
+				grid-template-columns: 1fr
+		&text
+			line-height: 1.86
+		&paragraph
+			margin-bottom: 35px
+			line-height: 1.86
+			@media screen and (max-width: $fablet)
+				margin-bottom: 15px
+		&phone
+			color: $accent
+			font-size: 26px
+			@media screen and (max-width: $tablet)
+				font-size: 20px
+			&:hover
+				text-decoration: underline
+		&link
+			color: $accent
+			font-weight: 600
+			text-transform: uppercase
+			line-height: 1.86
+			&:hover
+				text-decoration: underline

@@ -9,8 +9,7 @@ Vue.use(VeeValidate, {
   classes: true,
   classNames: {
     invalid: 'invalid'
-  },
-  events: 'change'
+  }
 });
 
 Vue.use(VueGoogleMaps, {

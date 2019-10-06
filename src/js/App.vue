@@ -23,7 +23,4 @@ export default {
 
 <style lang="sass">
 @import "../css/main"
-/*.active*/
-  /*background-color: green*/
-
 </style>

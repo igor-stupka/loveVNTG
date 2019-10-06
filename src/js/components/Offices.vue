@@ -12,33 +12,38 @@
             class="offices__city"
           >
             <button
-              :class="{'active':place.selected}"
+              :class="activeTab === index ? 'offices__button--active' : '' "
               class="offices__button"
-              @click="changeCoords(place)"
+              @click="changeActiveTab(index)"
             >
               {{ place.name }}
             </button>
           </li>
         </ul>
-        <p class="offices__description">
-          Global Message Services Ukraine LLC
-        </p>
+        <transition name="fade">
+          <p class="offices__description">
+            {{ places[activeTab].info }}
+          </p>
+        </transition>
 
         <p class="offices__address">
-          Kuiv, Stepan Bandera, 33
-          02066
-          Ukraine
+          {{ places[activeTab].address }}<br>
+          {{ places[activeTab].index }}<br>
+          {{ places[activeTab].country }}<br>
         </p>
       </div>
-      <div class="offices__right">
+      <div
+        class="offices__right"
+        tabindex="-1"
+      >
         <GmapMap
-          :center="currentPosition"
+          :center="places[activeTab].coords"
           :zoom="9"
-          style="width: 500px; height: 300px"
+          class="offices__map"
           :options="mapStyle"
         >
           <GmapMarker
-            :position="currentPosition"
+            :position="places[activeTab].coords"
             :icon="marker"
           />
         </GmapMap>
@@ -48,25 +53,27 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   computed: {
     ...mapGetters('gMap', {
-      currentPosition: 'currentPosition',
+      activeTab: 'activeTab',
       mapStyle: 'mapStyle',
       places: 'places',
       marker: 'markerIcon'
     })
   },
   methods: {
-    ...mapActions('gMap', {
-      changeCoords: 'changeCoords'
-    })
+
+    changeActiveTab(index) {
+      this.$store.commit('gMap/setIndex', index);
+    }
   }
 
 };
 </script>
 
 <style lang="sass">
+@import '../../css/components/offices.sass'
 </style>

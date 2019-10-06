@@ -1,0 +1,47 @@
+@import "../_variables"
+@import "../_mixins"
+@import "../_functions"
+
+.field
+	$this: &
+	border-bottom: 1px solid #040707
+	margin-bottom: 20px
+	padding-bottom: 13px
+	display: flex
+	align-items: center
+	position: relative
+	&:focus-within
+		border-bottom: 1px solid $light
+		#{$this}__label
+			color: $light
+	&.invalid
+		border-bottom-color: $danger
+		#{$this}__input,
+		#{$this}__label
+			color: $danger
+	&__
+		&input
+			width: 100%
+			color: $black
+			font-family: "Suisse Intl"
+			font-size: 18px
+			font-weight: 300
+			transition: color $time $tFunc
+			&:focus
+				color: $light
+		&label
+			color: $black
+			font-size: 18px
+			line-height: 1
+			width: 100px
+			transition: color $time $tFunc
+			&[for]
+				cursor: pointer
+		&sub-text
+			position: absolute
+			top: calc(100% + 5px)
+			left: 0
+			width: 100%
+			font-size: 11px
+			color: $danger
+

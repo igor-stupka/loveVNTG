@@ -5,8 +5,108 @@
 // СONTROL STYLES
 @import "./_fonts"
 @import "./_reset"
-@import "./_helpers"
-// COMPONENTS
-
+@import "./_transitions"
 // NON-PRIORITY STYLES
 @import "./_non-priority"
+
+
+// GENERAL STYLES
+.container
+	padding: 0 $container
+	@media screen and (max-width: $tablet)
+		padding: 0 $containerTablet
+	@media screen and (max-width: $tablet)
+		padding: 0 $containerFablet
+
+.accent
+	color: $accent
+
+.title
+	color: $text
+	font-weight: 300
+	line-height: 1
+	margin-bottom: 45px
+	font-size: 50px
+	+responsive-font(5vw, 37px, 50px)
+
+.section-title
+	color: $light
+	font-family: "Suisse Intl"
+	line-height: 1
+	font-weight: 300
+	margin-bottom: 40px
+	+responsive-font(5vw, 27px, 34px)
+	@media screen and (max-width: $tablet)
+		margin-bottom: 20px
+	&--
+		&dark
+			color: $text
+
+.checkbox
+	$this: &
+	position: relative
+	margin-bottom: 45px
+	&__
+		&label
+			padding-left: 35px
+			font-size: 18px
+			color: $light
+			line-height: 1
+			cursor: pointer
+			@media screen and (max-width: $tablet)
+				font-size: 15px
+			&::before
+				content: ''
+				width: 15px
+				height: 15px
+				background-color: $light
+				position: absolute
+				top: 3px
+				left: 0
+			&::after
+				content: ''
+				background: no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='14' viewBox='0 0 13 14'%3E%3Cg%3E%3Cg%3E%3Cpath d='M.616 7.32l.768-.64 3.955 4.746L11.57.748l.863.504L6.02 12.243l.364.437-.768.64-.132-.158-.052.09-.864-.504.235-.403z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 
+				width: 13px
+				height: 14px
+				position: absolute
+				top: 3px
+				left: 1px
+				opacity: 0
+				transform: rotate(20deg)
+				transition: opacity $time $tFunc,  transform $time $tFunc
+
+		&input
+			position: absolute
+			top: 4px
+			left: 3px
+			opacity: 0
+			&:checked + #{$this}__label::after
+				opacity: 1
+				transform: rotate(0)
+			&:focus + #{$this}__label::before
+				outline: 2px dotted blue
+				outline-offset: 2px 
+		&sub-text
+			position: absolute
+			top: calc(100% + 5px)
+			left: 0
+			width: 100%
+			font-size: 11px
+			color: $danger
+
+.button
+	width: 279px
+	background-color: $dark
+	color: $light
+	font-size: 11px
+	font-weight: 600
+	text-transform: uppercase
+	letter-spacing: 1.54px
+	padding: 35px 8px
+	transition: color $time $tFunc, background-color $time $tFunc
+	&:hover
+		background-color: $light
+		color: $dark
+	&:disabled
+		background-color: #ccc
+		pointer-events: none

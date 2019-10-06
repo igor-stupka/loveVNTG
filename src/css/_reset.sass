@@ -1,8 +1,8 @@
 body
-	font: 400 16px $mainFont, $systemFontsList, sans-serif
+	font: 300 15px $mainFont, $systemFontsList, sans-serif
 	width: 100%
 	background-color: $light
-	color: $dark
+	color: $text
 	overflow-x: hidden
 	-webkit-font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale
@@ -23,8 +23,9 @@ body
 
 button, a
 	cursor: pointer
-	&::-moz-focus-inner
-		border: 0
+	&:focus
+		outline: 2px dotted $focus
+		outline-offset: 2px
 
 img
 	max-width: 100%

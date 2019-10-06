@@ -12,7 +12,7 @@ class SmoothScroll {
       const element = document.getElementById(scrollTo.substring(1));
 
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 10,
+        top: element.getBoundingClientRect().top,
         behavior: 'smooth'
       });
     });
