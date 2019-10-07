@@ -45,7 +45,7 @@
           <button
             class="button"
             type="submit"
-            :disabled="errors.any()"
+            :disabled="errors.any() || sent"
           >
             Get in touch
           </button>
